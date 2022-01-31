@@ -1,0 +1,2 @@
+# arrancando
+inicios como programador
