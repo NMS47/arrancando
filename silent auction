@@ -1,0 +1,36 @@
+from replit import clear
+from art import logo
+print(logo)
+print("Welcome to secret auction.")
+offers = {}
+status = True
+while status:
+  name = input("What is you name?\n")
+  bid= int(input("What is your bid?\n"))
+  
+  def data_inputs(name, bid,):
+    offers[name] = bid
+
+  data_inputs(name, bid)     
+  #print(offers)
+  continuar = input("Is there another bidder? Y or N\n")
+  if continuar == "y":
+    clear()
+  else: 
+    status = False
+
+max_offer = 0
+tie = False
+for key in offers:
+  
+  if offers[key] > max_offer:
+    max_offer = offers[key]
+    max_bidder = key
+    tie = False
+  elif offers[key] == max_offer:
+    tie = True
+
+if tie == True:
+  print(f"There was a tie at ${max_offer}. Please raise your bids.")
+else:
+  print(f"The winner is {max_bidder} with ${max_offer}.")
