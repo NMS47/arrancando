@@ -1,0 +1,45 @@
+from art import logo
+from art import symbols
+from replit import clear
+active = True
+print(logo)
+
+def calculator(first_number, operation, second_number):
+  if operation == "+":
+    calculation = first_number + second_number
+    return calculation
+  elif operation == "-":
+    calculation = first_number - second_number
+    return calculation   
+  elif operation == "*":
+    calculation = first_number * second_number
+    return calculation
+  elif operation == "/":
+    calculation = first_number / second_number
+    return calculation
+  else:
+    print("You typed a worng operator. Try again.")
+
+while active:
+  #calculation = 0
+  first_number = int(input("What is the first number? "))
+  continuar = True
+  while continuar:
+    
+    print(symbols)
+    operation = input("Pick an operation: ")
+    second_number = int(input("What is the next number? "))
+    calculation = calculator(first_number, operation, second_number)
+    print(f"{first_number} {operation} {second_number} = {calculation}")
+    seguir_calculando = input(f"""Type 'y\' to continue calculating with {calculation},  or type 'n\' to start a new calculation: """)
+    if seguir_calculando == "n":
+      terminar = input("Do you want to exit the program? y or n:  ")
+      if terminar == "y":
+        active = False
+      clear()
+      continuar = False
+    elif seguir_calculando == "y":
+      first_number = calculation  
+    else:
+      print("Wrong input. Type again.")
+      seguir_calculando = input(f"""Type 'y\' to continue calculating with {calculation},  or type 'n\' to start a new calculation: """) 
