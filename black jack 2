@@ -1,0 +1,70 @@
+from replit import clear
+from art import logo
+import random
+play = True
+keep_playing = True
+###
+if input("do you want to play a little Black Jack? 'y\' or 'n\': ") == "n":
+  print("ok bye then motherfucker.")
+  play = False
+###############
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+def player_card():
+  player.append(random.choice(cards))
+  player_score = sum(player)
+  return player_score
+
+def dealer_card():
+  dealer.append(random.choice(cards))
+  dealer_score = sum(dealer)
+  return dealer_score
+ ########################## 
+
+###########################
+while keep_playing:
+  print(logo)
+  player = []
+  player_score = 0
+  dealer = []
+  loss = False
+  dealer_score = 0
+#first hand
+  player_card()
+  player_score = player_card()
+  dealer_card()
+  ##########################
+  
+    
+  print(f"Your cards {player}. Dealer's cards: {dealer}.")
+  print(f"Your score is {player_score}")
+  dame = True
+  #second hand
+  while player_score < 22 and dame:
+    if input("Do you want another card? 'y' or 'n': ") == "y":
+      player_score = player_card()
+      print(f"Your cards {player}. Dealer's cards: {dealer}.")
+      print(f"Your score is {player_score}")
+    else: 
+      dame = False
+  if player_score > 21:
+    loss = True
+    dealer_score += 21
+  #dealer juega
+  while dealer_score < 18 and dealer_score < player_score and dealer_score < 21:
+    dealer_score = dealer_card()
+    print(dealer)
+    print(dealer_score)
+    print(f"The computer final hand is {dealer_score}")
+  if dealer_score < player_score and loss == False:
+    print("You Won!!!!!!")
+  elif dealer_score == player_score and loss == False:
+    print("It is a draw")
+  else:
+    print("You Lost! :(")
+######
+  if input("Do you want to keep playing: 'y' or 'n': ") == "y":
+    clear()
+  else:
+    print("OK, goodbye")
+    play = False
