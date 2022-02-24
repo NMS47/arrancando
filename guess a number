@@ -1,0 +1,60 @@
+logo = """
+
+  o          o                                                                                          
+ <|\        <|>                                                                                         
+ / \\o      / \                                                                                         
+ \o/ v\     \o/   o       o   \o__ __o__ __o     o__ __o/   o       o     o__  __o       __o__    __o__ 
+  |   <\     |   <|>     <|>   |     |     |>   /v     |   <|>     <|>   /v      |>     />  \    />  \  
+ / \    \o  / \  < >     < >  / \   / \   / \  />     / \  < >     < >  />      //      \o       \o     
+ \o/     v\ \o/   |       |   \o/   \o/   \o/  \      \o/   |       |   \o    o/         v\       v\    
+  |       <\ |    o       o    |     |     |    o      |    o       o    v\  /v __o       <\       <\   
+ / \        < \   <\__ __/>   / \   / \   / \   <\__  < >   <\__ __/>     <\/> __/>  _\o__</  _\o__</   
+                                                       |                                                
+                                               o__     o                                                
+                                               <\__ __/>                                                
+"""
+
+
+from art import logo
+import random
+
+print(logo)
+print("Welcome to the Number Guessing Game!")
+print("I'm thinking of a number between 1 and 100.")
+#generate the random num
+num = random.randint(1, 100)
+
+difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
+#selecting the difficulty
+if difficulty == "easy":
+  lives = 10
+  
+elif difficulty == "hard":
+  lives = 5
+else:
+  print("Wrong input, you loose.")
+#print(num)
+
+win = False
+#imprime el dialogo segun es correcto o no
+def make_a_guess(lives, win):
+  print(f"You have {lives} attempts remaining to guess the number: ")
+  guess = int(input("Make a guess: "))
+  if guess < num:
+    print("Too low.")
+  elif guess == num:
+    print(f"You are right! {num} was the right number!!")
+    win = True
+    return win
+  elif guess > num and guess < 100:
+    print("Too high.")
+
+#mientras tenga vidas sigue el loop:
+
+while lives > 0 and win != True:
+  win = make_a_guess(lives, win)
+  lives -= 1
+  if lives > 0 and win != True:
+    print("Guess again.")
+if lives == 0:
+  print("You are out of guesses. You lost.")
