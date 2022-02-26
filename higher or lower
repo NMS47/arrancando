@@ -1,0 +1,48 @@
+from art import logo, vs
+from game_data import data
+from replit import clear
+import random
+
+score = 0
+
+def random_pick2():
+    choise = random.choice(data)
+    followers = choise["follower_count"]
+    resume = choise["name"] + ", a " + choise["description"] + " from " + choise["country"]
+    return followers, resume
+
+followers_A, resume = random_pick2()
+play = True
+while play:
+    if followers_A == followers_B:
+        followers_B, resume_b = random_pick2()
+    print(logo)
+    print("Compare A: " + resume)
+    
+    print(vs)
+
+    followers_B, resume_b = random_pick2()
+    print("Against B: " + resume_b)
+
+    answear = input("Who has more followers? Type 'A' or 'B': ")
+    print(answear)
+
+    if answear == "a" and followers_A > followers_B:
+        score += 1
+        print(f"Correct. Your current score is {score}")
+        followers_A = followers_B
+        resume = resume_b
+        clear()
+    elif answear == "b" and followers_B > followers_A:
+        score += 1
+        print(f"Correct. Your current score is {score}")
+        followers_A = followers_B
+        resume = resume_b
+        clear()
+
+        
+    else:
+        play = False
+clear()
+print(logo)
+print(f"Wrong. You loose. Your final score is {score}")
